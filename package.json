@@ -1,0 +1,36 @@
+{
+  "name": "hand-statefull",
+  "version": "0.0.1",
+  "description": "support Http Stateful by Cookie and Session for handover, compatible with connect/express, ",
+  "main": "stateful.coffee",
+  "scripts": {
+    "test": "set TEST=true && mocha --compilers coffee:coffee-script/register   --reporter spec",
+    "start": "set TEST=true && set DEBUG=hand* && mocha --compilers coffee:coffee-script/register   --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/js-seth-h/hand-response.git"
+  },
+  "keywords": [
+    "handover",
+    "connect",
+    "response"
+  ],
+  "author": "js.seth.h@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/js-seth-h/hand-stateful/issues"
+  },
+  "homepage": "https://github.com/js-seth-h/hand-stateful",
+  "dependencies": {
+    "debug": "^0.8.1",
+    "cookies": "^0.4.1",
+    "handover": "^0.2.1",
+    "uid2": "0.0.3"
+  },
+  "devDependencies": {
+    "mocha": "^1.18.2",
+    "coffee-script": "^1.7.1",
+    "supertest": "^0.12.1"
+  }
+}
