@@ -1,5 +1,5 @@
 {
-  "name": "hand-statefull",
+  "name": "hand-stateful",
   "version": "0.0.2",
   "description": "support Http Stateful by Cookie and Session for handover, compatible with connect/express, ",
   "main": "stateful.coffee",
