@@ -66,7 +66,9 @@ session = (store)->
         debug 'get Session ',  err, sid, sessionJson
         if err
           debug 'next ',  typeof  next
-          return next(err)  
+          req.tmp.sessionData = {}
+          store.set sid, {}
+          return next()  
         req.tmp.sessionData = JSON.parse(sessionJson)
         next()
     (req,res,next)->  
