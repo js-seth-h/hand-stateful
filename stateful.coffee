@@ -104,7 +104,7 @@ session = (store)->
   
 
 
-stateful = (options)-> 
+stateful = (options = {} )-> 
 
   store = options.store || FileStore
     dir : (process.env.TMPDIR || process.env.TEMP)
