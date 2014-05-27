@@ -1,6 +1,6 @@
 {
   "name": "hand-stateful",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "support Http Stateful by Cookie and Session for handover, compatible with connect/express, ",
   "main": "stateful.coffee",
   "scripts": {
@@ -23,9 +23,9 @@
   },
   "homepage": "https://github.com/js-seth-h/hand-stateful",
   "dependencies": {
-    "debug": "^0.8.1",
     "cookies": "^0.4.1",
-    "handover": "^0.2.1",
+    "debug": "^0.8.1",
+    "handover": "^0.4.3",
     "uid2": "0.0.3"
   },
   "devDependencies": {

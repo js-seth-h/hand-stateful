@@ -31,8 +31,9 @@ FileStore = (option)->
 
 
 session = (store)->
-  return ho.make [
+  return ho [
     (req,res,next)->
+      req._tmp_session = {} 
       # take session id from cookie
 
       debug 'in session ' , typeof  req, typeof res, typeof  next
@@ -52,30 +53,30 @@ session = (store)->
         debug 'set on cookie'
         req.cookies.set 'uwsi', sid,
           singed: true 
-        req.tmp.sessionData = {}
+        req._tmp_session.sessionData = {}
         debug 'cookie set'
-      req.tmp.sid = sid
+      req._tmp_session.sid = sid
       return next()
     (req,res,next)->  
       # load SessionData
       debug 'Load Session Data'
-      return next() if req.tmp.sessionData 
+      return next() if req._tmp_session.sessionData 
       # debug 'store = ', store
-      sid = req.tmp.sid
+      sid = req._tmp_session.sid
       store.get sid, (err, sessionJson)->
         debug 'get Session ',  err, sid, sessionJson
         if err
           debug 'next ',  typeof  next
-          req.tmp.sessionData = {}
+          req._tmp_session.sessionData = {}
           store.set sid, {}
           return next()  
-        req.tmp.sessionData = JSON.parse(sessionJson)
+        req._tmp_session.sessionData = JSON.parse(sessionJson)
         next()
     (req,res,next)->  
       debug 'publish session interface'
 
-      sessionData = req.tmp.sessionData 
-      sid = req.tmp.sid
+      sessionData = req._tmp_session.sessionData 
+      sid = req._tmp_session.sid
       req.session =
         set: (key, value)->
           sessionData[key] = value
@@ -114,7 +115,7 @@ stateful = (options = {} )->
 
 
 
-  return ho.make [ 
+  return ho [ 
     cookies.connect ['asdf', 'w42q3'] 
     session(store)
   ]

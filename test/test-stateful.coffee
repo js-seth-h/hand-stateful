@@ -16,7 +16,7 @@ describe 'hand-stateful', ()->
       req.session.set('s-key', 'test-result') 
       res.end 'set'
 
-  server = http.createServer ho.make [
+  server = http.createServer ho [
     stateful()
       # store : stateful.FileStore
       #   dir : (process.env.TMPDIR || process.env.TEMP)
