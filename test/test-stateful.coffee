@@ -1,10 +1,10 @@
 request = require 'supertest'
 
 
-describe 'hand-stateful', ()->
+describe 'httpware-stateful', ()->
 
-  ho = require 'handover'
-  stateful = require '../stateful'
+  flyway = require 'flyway'
+  stateful = require '../src' #  require 'httpware-stateful'
   http = require 'http'
 
   getSession = (req,res, next)-> 
@@ -16,11 +16,11 @@ describe 'hand-stateful', ()->
       req.session.set('s-key', 'test-result') 
       res.end 'set'
 
-  server = http.createServer ho [
+  server = http.createServer flyway [
     stateful()
       # store : stateful.FileStore
       #   dir : (process.env.TMPDIR || process.env.TEMP)
-      #   prefix : 'ho-sssion-'
+      #   prefix : 'flyway-sssion-'
 
     getSession
     setSession
@@ -28,13 +28,13 @@ describe 'hand-stateful', ()->
 
   agent = request.agent(server);
     
-  it 'should set ', (done)-> 
+  it 'sflywayuld set ', (done)-> 
     # request(server)
     agent.get('/set')
       .expect(200, 'set') 
       .end done
 
-  it 'should get ', (done)-> 
+  it 'sflywayuld get ', (done)-> 
     agent.get('/get')
       .expect(200, 'test-result')
       .end done
@@ -62,13 +62,13 @@ describe 'hand-stateful', ()->
 
     agent = request.agent(server);
       
-    it 'should set ', (done)-> 
+    it 'sflywayuld set ', (done)-> 
       # request(server)
       agent.get('/set')
         .expect(200, 'set') 
         .end done
 
-    it 'should get ', (done)-> 
+    it 'sflywayuld get ', (done)-> 
       agent.get('/get')
         .expect(200, 'test-result')
         .end done

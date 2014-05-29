@@ -1,37 +1,36 @@
 {
-  "name": "hand-stateful",
-  "version": "0.0.6",
-  "description": "support Http Stateful by Cookie and Session for handover, compatible with connect/express, ",
-  "main": "stateful.coffee",
+  "name": "httpware-stateful",
+  "version": "0.0.2",
+  "description": "support Http Stateful by Cookie and Session, compatible with connect/express, ",
+  "main": "lib",
   "scripts": {
-    "test": "set TEST=true && mocha --compilers coffee:coffee-script/register   --reporter spec",
-    "start": "set TEST=true && set DEBUG=hand* && mocha --compilers coffee:coffee-script/register   --reporter spec"
+    "build": "coffee -c -b -o lib src  ",
+    "clean": "rm -r lib",
+    "prepublish": "npm run-script build",
+    "postpublish": "npm run-script clean",
+    "test": "set TEST=true && mocha --compilers coffee:coffee-script/register   --reporter spec"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/js-seth-h/hand-response.git"
+    "url": "git://github.com/js-seth-h/httpware-stateful.git"
   },
   "keywords": [
-    "handover",
-    "connect",
-    "response"
+    "http"
   ],
   "author": "js.seth.h@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/js-seth-h/hand-stateful/issues"
+    "url": "https://github.com/js-seth-h/httpware-stateful/issues"
   },
-  "homepage": "https://github.com/js-seth-h/hand-stateful",
+  "homepage": "https://github.com/js-seth-h/httpware-stateful",
   "dependencies": {
     "cookies": "^0.4.1",
     "debug": "^0.8.1",
-    "handover": "^0.4.3",
+    "flyway": "0.1.0-2",
     "uid2": "0.0.3"
   },
   "devDependencies": {
-    "coffee-script": "^1.7.1",
-    "connect": "^3.0.0-rc.2",
-    "mocha": "^1.18.2",
+    "connect": "^2.17.3",
     "supertest": "^0.12.1"
   }
 }

@@ -5,9 +5,9 @@ util = require 'util'
 # crypto = require 'crypto'
 uid = require 'uid2'
 
-debug = require('debug')('hand:stateful')
+debug = require('debug')('httpware-stateful')
 
-ho = require 'handover'
+flyway = require 'flyway'
 cookies = require 'cookies' 
 
 
@@ -31,7 +31,7 @@ FileStore = (option)->
 
 
 session = (store)->
-  return ho [
+  return flyway [
     (req,res,next)->
       req._tmp_session = {} 
       # take session id from cookie
@@ -111,11 +111,11 @@ stateful = (options = {} )->
 
   store = options.store || FileStore
     dir : (process.env.TMPDIR || process.env.TEMP)
-    prefix : 'ho-sssion-'
+    prefix : 'flyway-sssion-'
 
 
 
-  return ho [ 
+  return flyway [ 
     cookies.connect ['asdf', 'w42q3'] 
     session(store)
   ]

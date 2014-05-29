@@ -1,4 +1,4 @@
-# hand-stateful
+# httpware-stateful
 
 > http stateful ( cookie & session support), compatible with handover, connect/express
 
@@ -26,10 +26,10 @@ Install this, then you can enjoy stateful http!
  
 
 ```coffee 
-  ho = require 'handover'
-  stateful = require 'hand-stateful'
+  flyway = require 'flyway'
+  stateful = require '../src' #  require 'httpware-stateful'
   http = require 'http'
- 
+
   getSession = (req,res, next)-> 
       return next() unless  req.url is '/get'
       data = req.session.get('s-key') 
@@ -39,22 +39,22 @@ Install this, then you can enjoy stateful http!
       req.session.set('s-key', 'test-result') 
       res.end 'set'
 
-  server = http.createServer ho.make [
+  server = http.createServer flyway [
     stateful()
+      # store : stateful.FileStore
+      #   dir : (process.env.TMPDIR || process.env.TEMP)
+      #   prefix : 'flyway-sssion-'
+
     getSession
     setSession
-  ]
+  ] 
 
 ```
 with default option.
 
 
-```coffee 
-  ho = require 'handover'
-  stateful = require 'hand-stateful'
-  http = require 'http'
- 
-  server = http.createServer ho.make [
+```coffee   
+  server = http.createServer flyway [
     stateful
       store : stateful.FileStore
         dir : (process.env.TMPDIR || process.env.TEMP)
