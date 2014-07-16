@@ -3,7 +3,7 @@ request = require 'supertest'
 
 describe 'httpware-stateful', ()->
 
-  flyway = require 'flyway'
+  ficent = require 'ficent'
   stateful = require '../src' #  require 'httpware-stateful'
   http = require 'http'
 
@@ -16,11 +16,11 @@ describe 'httpware-stateful', ()->
       req.session.set('s-key', 'test-result') 
       res.end 'set'
 
-  server = http.createServer flyway [
+  server = http.createServer ficent [
     stateful()
       # store : stateful.FileStore
       #   dir : (process.env.TMPDIR || process.env.TEMP)
-      #   prefix : 'flyway-sssion-'
+      #   prefix : 'ficent-sssion-'
 
     getSession
     setSession
@@ -28,13 +28,13 @@ describe 'httpware-stateful', ()->
 
   agent = request.agent(server);
     
-  it 'sflywayuld set ', (done)-> 
+  it 'sficentuld set ', (done)-> 
     # request(server)
     agent.get('/set')
       .expect(200, 'set') 
       .end done
 
-  it 'sflywayuld get ', (done)-> 
+  it 'sficentuld get ', (done)-> 
     agent.get('/get')
       .expect(200, 'test-result')
       .end done
@@ -62,13 +62,13 @@ describe 'httpware-stateful', ()->
 
     agent = request.agent(server);
       
-    it 'sflywayuld set ', (done)-> 
+    it 'sficentuld set ', (done)-> 
       # request(server)
       agent.get('/set')
         .expect(200, 'set') 
         .end done
 
-    it 'sflywayuld get ', (done)-> 
+    it 'sficentuld get ', (done)-> 
       agent.get('/get')
         .expect(200, 'test-result')
         .end done

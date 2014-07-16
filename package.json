@@ -1,6 +1,6 @@
 {
   "name": "httpware-stateful",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "support Http Stateful by Cookie and Session, compatible with connect/express, ",
   "main": "lib",
   "scripts": {
@@ -26,7 +26,7 @@
   "dependencies": {
     "cookies": "^0.4.1",
     "debug": "^0.8.1",
-    "flyway": "0.1.0-2",
+    "ficent": "^0.1.12",
     "uid2": "0.0.3"
   },
   "devDependencies": {

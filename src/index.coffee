@@ -7,9 +7,11 @@ uid = require 'uid2'
 
 debug = require('debug')('httpware-stateful')
 
-flyway = require 'flyway'
+ficent = require 'ficent'
 cookies = require 'cookies' 
 
+
+os = require 'os'
 
 FileStore = (option)->
   Store = 
@@ -31,7 +33,7 @@ FileStore = (option)->
 
 
 session = (store)->
-  return flyway [
+  return ficent [
     (req,res,next)->
       req._tmp_session = {} 
       # take session id from cookie
@@ -110,12 +112,12 @@ session = (store)->
 stateful = (options = {} )-> 
 
   store = options.store || FileStore
-    dir : (process.env.TMPDIR || process.env.TEMP)
-    prefix : 'flyway-sssion-'
+    dir : os.tmpDir()
+    prefix : 'ficent-sssion-'
 
 
 
-  return flyway [ 
+  return ficent [ 
     cookies.connect ['asdf', 'w42q3'] 
     session(store)
   ]
